@@ -9,6 +9,8 @@
   "author": "Ben Gladwell <bengladwell@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.2.48",
+    "bluebird": "^3.3.4",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "normalize.css": "^4.0.0"
@@ -19,6 +21,7 @@
     "gulp-less": "^3.0.5",
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "nodemon": "^1.9.1"
   }
 }
