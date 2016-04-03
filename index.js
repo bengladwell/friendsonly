@@ -39,9 +39,16 @@ app.get('/media/*', function (req, res) {
     Bucket: config.aws.Bucket,
     Key: key
   }).then(function (head) {
-    console.log(head);
+
+    // handle ETag caching
+    if (req.get('If-None-Match') === head.ETag) {
+      res.sendStatus(304);
+      return true;
+    }
 
     res.set('Content-Length', head.ContentLength);
+    res.set('ETag', head.ETag);
+    res.set('Cache-Control', 'max-age=172800'); // 2 days
 
     // stream videos
     if (head.ContentType === 'application/octet-stream' && path.extname(key) === '.mp4') {
