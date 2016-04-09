@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   less = require('gulp-less'),
   merge = require('merge-stream'),
+  nodemon = require('nodemon'),
   util = require('gulp-util'),
   sourcemaps = require('gulp-sourcemaps');
 
@@ -35,5 +36,19 @@ gulp.task('less', function () {
     .pipe(gulp.dest('public/css/'));
 });
 
+gulp.task('serve', ['less'], function () {
+
+  gulp.watch('src/less/**/*.less', ['less']);
+
+  nodemon({
+    script: 'index.js',
+    stdout: false
+  }).on('stdout', function (s) {
+    util.log(util.colors.gray(s.toString().trim()));
+  }).on('stderr', function (s) {
+    util.log(util.colors.red(s.toString().trim()));
+  });
+
+});
 
 gulp.task('default', ['assets', 'less']);
