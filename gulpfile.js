@@ -3,12 +3,19 @@
 var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   less = require('gulp-less'),
+  merge = require('merge-stream'),
   util = require('gulp-util'),
   sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('assets', function () {
-  return gulp.src('node_modules/normalize.css/normalize.css')
-    .pipe(gulp.dest('public/css/'));
+  return merge(
+    gulp.src('node_modules/normalize.css/normalize.css')
+      .pipe(gulp.dest('public/css/')),
+    gulp.src('node_modules/video.js/dist/video.min.js')
+      .pipe(gulp.dest('public/js/')),
+    gulp.src('node_modules/video.js/dist/video-js.min.css')
+      .pipe(gulp.dest('public/css/'))
+  );
 });
 
 gulp.task('less', function () {

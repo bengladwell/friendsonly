@@ -10,7 +10,8 @@ var express = require('express'),
   querystring = require('querystring'),
   P = require('bluebird'),
   AWS = require('aws-sdk'),
-  config = require('./config.json');
+  config = require('./config.json'),
+  media = require('./media.json');
 
 var app = express();
 
@@ -24,7 +25,12 @@ app.use(cookieParser(config.secret));
 app.use(express['static']('public'));
 
 app.get('/', function (req, res) {
-  res.render('home');
+  res.render('home', {media: media});
+});
+
+app.get('/video/:slug', function (req, res) {
+  var med = _.findWhere(media, {slug: req.params.slug});
+  res.render('video', med);
 });
 
 app.get('/do-i-know-you', function (req, res) {
@@ -210,25 +216,16 @@ app.get('/media/*', function (req, res) {
 
     // stream videos
     if (head.ContentType === 'application/octet-stream' && path.extname(key) === '.mp4') {
-
       res.set('Content-Type', 'video/mp4');
-      s3.getObject({
-        Bucket: config.aws.Bucket,
-        Key: req.params[0]
-      }).createReadStream().pipe(res);
-
     } else {
-
       res.set('Content-Type', head.ContentType);
 
-      s3.getObjectAsync({
-        Bucket: config.aws.Bucket,
-        Key: req.params[0]
-      }).then(function (d) {
-        res.send(d.Body);
-      });
-
     }
+
+    s3.getObject({
+      Bucket: config.aws.Bucket,
+      Key: req.params[0]
+    }).createReadStream().pipe(res);
 
   }, function (err) {
     res.sendStatus(err.statusCode);
