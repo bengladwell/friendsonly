@@ -3,5 +3,11 @@
     "Bucket": "",
     "accessKeyId": "",
     "secretAccessKey": ""
-  }
+  },
+  "facebook": {
+    "appId": "",
+    "redirectUri": "",
+    "appSecret": ""
+  },
+  "secret": ""
 }
