@@ -16,6 +16,13 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      a {
+        text-decoration: none;
+        color: black;
+        &:focus, &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     img {
       width: 100%;
