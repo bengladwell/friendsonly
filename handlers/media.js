@@ -2,7 +2,8 @@
 var _ = require('underscore'),
   config = require('../config.json'),
   path = require('path'),
-  AWS = require('aws-sdk');
+  AWS = require('aws-sdk'),
+  hasAuth = require('../lib/has-auth');
 
 module.exports = function (req, res) {
   var s3 = new AWS.S3({
@@ -17,6 +18,11 @@ module.exports = function (req, res) {
 
   if (!key) {
     res.sendStatus(400);
+    return false;
+  }
+
+  if (!hasAuth(req)) {
+    res.sendStatus(403);
     return false;
   }
 

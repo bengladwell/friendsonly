@@ -12,7 +12,8 @@ var express = require('express'),
   oopsHandler = require('./handlers/oops'),
   iDoNotKnowYouHandler = require('./handlers/i-do-not-know-you'),
   oauthHandler = require('./handlers/oauth'),
-  mediaHandler = require('./handlers/media');
+  mediaHandler = require('./handlers/media'),
+  authCheckHandler = require('./handlers/auth-check');
 
 var app = express();
 
@@ -25,8 +26,8 @@ app.set('view engine', 'hbs');
 app.use(cookieParser(config.secret));
 app.use(express['static']('public'));
 
-app.get('/', homeHandler);
-app.get('/video/:slug', videoHandler);
+app.get('/', authCheckHandler, homeHandler);
+app.get('/video/:slug', authCheckHandler, videoHandler);
 app.get('/do-i-know-you', doIKnowYouHandler);
 app.get('/oops', oopsHandler);
 app.get('/i-do-not-know-you', iDoNotKnowYouHandler);
