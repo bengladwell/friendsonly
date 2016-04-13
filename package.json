@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.2.48",
-    "bluebird": "^3.3.4",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
