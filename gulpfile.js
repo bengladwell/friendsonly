@@ -5,6 +5,7 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   merge = require('merge-stream'),
   nodemon = require('nodemon'),
+  babel = require('gulp-babel'),
   util = require('gulp-util'),
   sourcemaps = require('gulp-sourcemaps');
 
@@ -36,9 +37,18 @@ gulp.task('less', function () {
     .pipe(gulp.dest('public/css/'));
 });
 
-gulp.task('serve', ['less'], function () {
+gulp.task('client', function () {
+  return gulp.src('client/**/*.js')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest('public/js/'));
+});
+
+gulp.task('serve', ['less', 'client'], function () {
 
   gulp.watch('src/less/**/*.less', ['less']);
+  gulp.watch('client/**/*.js', ['client']);
 
   nodemon({
     script: 'index.js',
