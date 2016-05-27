@@ -1,15 +1,13 @@
 
 .content {
-  margin: 0 auto;
-  width: 80%;
+  .clearfix();
 }
 .video {
   float: left;
-  width: 25%;
-  padding: 20px 0;
+  width: 100%;
+  padding: 1em 1em 2em;
   .frame {
     padding: 0 20px;
-    border-right: 1px solid #CACACA;
     .name {
       font-size: 2em;
       text-align: center;
@@ -27,5 +25,17 @@
     img {
       width: 100%;
     }
+  }
+  &:nth-child(2) {
+    background-color: @gray;
+  }
+  @media screen and (min-width: @tablet-break) {
+    width: 50%;
+    &:nth-child(2) {
+      background-color: inherit;
+    }
+  }
+  @media screen and (min-width: @desktop-break) {
+    width: 33%;
   }
 }

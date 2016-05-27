@@ -2,6 +2,25 @@
   box-sizing: border-box;
 }
 
+@tablet-break: 768px;
+@desktop-break: 960px;
+
+@gray: #EEE;
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+  *zoom:1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 body {
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 14px;
@@ -9,3 +28,4 @@ body {
 
 @import 'home';
 @import 'do-i-know-you';
+@import 'video';
