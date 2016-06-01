@@ -12,10 +12,6 @@ var gulp = require('gulp'),
 gulp.task('assets', function () {
   return merge(
     gulp.src('node_modules/normalize.css/normalize.css')
-      .pipe(gulp.dest('public/css/')),
-    gulp.src('node_modules/video.js/dist/video.min.js')
-      .pipe(gulp.dest('public/js/')),
-    gulp.src('node_modules/video.js/dist/video-js.min.css')
       .pipe(gulp.dest('public/css/'))
   );
 });
