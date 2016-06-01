@@ -61,4 +61,4 @@ gulp.task('serve', ['less', 'client'], function () {
 
 });
 
-gulp.task('default', ['assets', 'less']);
+gulp.task('default', ['assets', 'less', 'client']);
