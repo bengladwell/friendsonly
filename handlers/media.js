@@ -8,8 +8,7 @@ var _ = require('underscore'),
 module.exports = function (req, res) {
   var s3 = new AWS.S3({
       accessKeyId: config.aws.accessKeyId,
-      secretAccessKey: config.aws.secretAccessKey,
-      logger: process.stdout
+      secretAccessKey: config.aws.secretAccessKey
     }),
     key = req.params[0],
     addToHeaders = {},
