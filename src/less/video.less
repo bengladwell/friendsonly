@@ -3,12 +3,19 @@ body#video {
 
   .page {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     justify-content: center;
   }
 
 }
 
-.video-player {
+.video__player {
   max-width: 95%;
+}
+
+.video__title {
+  text-align: center;
+  @media screen and (min-width: @tablet-break) {
+    font-size: 3em;
+  }
 }
