@@ -9,6 +9,24 @@ body#video {
 
 }
 
+.back {
+  text-align: center;
+  @media screen and (min-width: @tablet-break) {
+    text-align: left;
+    position: relative;
+    left: 1em;
+  }
+  a {
+    .fa {
+      margin-right: 0.2em;
+      font-size: 0.8em;
+      top: -1px;
+      position: relative;
+    }
+    text-decoration: none;
+  }
+}
+
 .video__player {
   max-width: 95%;
 }
