@@ -28,11 +28,11 @@ module.exports = function (req, res) {
       return false;
     }
 
-    if (!body.match(/access_token=/)) {
+    if (!body.match(/"access_token":/)) {
       try {
         json = JSON.parse(body);
       } catch (e) {
-        console.log(new Date() + ' - Error parsing access_token body');
+        console.log(new Date() + ' - Error parsing possible error body');
         res.redirect('/oops');
         return false;
       }
@@ -48,7 +48,13 @@ module.exports = function (req, res) {
       res.redirect('/oops');
     }
 
-    params = querystring.parse(body);
+    try {
+      params = JSON.parse(body);
+    } catch (e) {
+      console.log(new Date() + ' - Error parsing access_token body');
+      console.log(body);
+      res.redirect('/oops');
+    }
 
     // is this the owner?
     request.get('https://graph.facebook.com/me?' + querystring.stringify({
