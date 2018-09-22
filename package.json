@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "gulp serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ben Gladwell <bengladwell@gmail.com>",
