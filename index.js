@@ -13,7 +13,8 @@ var express = require('express'),
   iDoNotKnowYouHandler = require('./handlers/i-do-not-know-you'),
   oauthHandler = require('./handlers/oauth'),
   mediaHandler = require('./handlers/media'),
-  authCheckHandler = require('./handlers/auth-check');
+  authCheckHandler = require('./handlers/auth-check'),
+  privacyHandler = require('./handlers/privacy');
 
 var app = express();
 
@@ -33,5 +34,6 @@ app.get('/oops', oopsHandler);
 app.get('/i-do-not-know-you', iDoNotKnowYouHandler);
 app.get('/oauth', oauthHandler);
 app.get('/media/*', mediaHandler);
+app.get('/privacy', privacyHandler);
 
 app.listen(3000);
